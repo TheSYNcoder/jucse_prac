@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+
+
+int rec(char str[]){
+ 	
+
+}
+int main(){
+	char str[]="hello";
+	rec
+}
