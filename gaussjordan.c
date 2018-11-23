@@ -12,10 +12,10 @@ void pr(float mat[1000][1001], int n)
   }
   printf("\n");
 }
-void change(float mat[1000][1001], int i, int j)
+void change(float mat[1000][1001], int i, int j, int n)
 {
   int k;
-  for ( k=0; k < 4; k++)
+  for ( k=0; k < n+1; k++)
   {
     float temp = mat[i][k];
     mat[i][k]=mat[j][k];
@@ -43,7 +43,7 @@ int main()
 				//for changing the rows if pivot element is 0
         while ( (mat[i][i]) == 0 && p <= n)
         {
-          change(mat,i,p+1);
+          change(mat,i,p+1 , n);
           p++;
         }
         float temp= mat[i][i];
