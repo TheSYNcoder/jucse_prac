@@ -44,11 +44,11 @@ void false_position(float start, float end, int n, float epsilon)
 		printf ("No. of iterations\tstart\tend\troot\n");
 		for( i=0; i < n;i++)
 		{
-							if (a*b <0)
-							{
+			if (a*b <0)
+			{
 									
-									mid= ((start*f(end)-end*f(start)))/(f(end)-f(start));
-									c=f(mid);
+			mid= ((start*f(end)-end*f(start)))/(f(end)-f(start));
+			c=f(mid);
 								    
 									printf ("%d\t%7f\t%7f\t%7f\n",++count,start, end, c);
 									if ( neg(c) <= epsilon)
