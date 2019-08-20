@@ -10,6 +10,7 @@ void getdata( data *s)
 {
 	printf("ENTER ROLL :");
 	scanf("%d" , &(s -> roll));
+	getchar();
 	printf("ENTER NAME : ");
 	scanf("%[^\n]%*c" , s -> name);
 	
@@ -19,7 +20,15 @@ void getdata( data *s)
 	scanf("%d" ,&(s -> scores[i]));
 	}
 }
-
+void write()
+{
+	FILE *fp = fopen("student.dat" , "w");
+	data s;
+	getdata(&s);
+	fseek( fp , 0 , 2);
+	fwrite(&s , sizeof(data) ,1, fp);
+	fclose(fp);
+}
 
 void append()
 {
@@ -75,6 +84,7 @@ void edit()
 			found =1;
 			
 			// fseek(fp , -1 , 1);
+			fseek(fp ,-1*(sizeof(data) + sizeof(int)) , 1);
 			printf("ENTER NEW MODIFIED DATA :\n");
 			getchar();
 			data ss;
@@ -85,6 +95,10 @@ void edit()
 			printf("Written successfully\n");
 			return;
 		}
+		char nam[100];
+		int score[5];
+		fread(nam , sizeof(char[100]) ,1 , fp);
+		fread(score , sizeof(int[5] ) , 1, fp);
 		offset++;
 	}
 	if (!found)
@@ -95,6 +109,25 @@ void edit()
 	
 	
 
+}
+void display()
+{
+	FILE *fp= fopen("student.dat" , "r");
+	data s;
+	while ( fread(&s , sizeof(data), 1 ,fp)!=0)
+	{
+		getchar();
+		printf("ROLL :%d\n" , s.roll);
+		printf("NAME : %s\n" , s.name);
+		
+		for ( int i =0; i < 5; i++)
+		printf("SCORE IN SUB %d = %d\n" , i+1 , s.scores[i]);
+		printf("\n"); 
+
+	}
+
+	printf("\n");
+	fclose(fp);
 }
 
 int main()
@@ -111,7 +144,7 @@ int main()
 		printf("2. TO DELETE RECORD FROM FILE\n");
 		printf("3. TO SEARCH RECORD TO FILE\n");
 		printf("4. TO EDIT RECORD TO FILE\n");
-		printf("5. TO APPEND RECORD TO FILE\n");
+		printf("5. TO WRITE RECORD TO FILE\n");
 		printf("ENTER VALUE :");
 		int n;
 		scanf("%d" , &n);
@@ -129,6 +162,12 @@ int main()
 			break;
 			case 4:
 			edit();
+			break;
+			case 5:
+			write();
+			break;
+			case 6:
+			display();
 			break;
 			default:
 			printf("Wrong choice man :(\n");
