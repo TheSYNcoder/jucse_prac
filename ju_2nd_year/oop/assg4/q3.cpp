@@ -1,11 +1,15 @@
 #include <iostream>
+#include <cstdlib>
+
 using namespace std;
 #define max(x , y) ( (x) > (y) ? (x) : (y)) 
 class Array{
 public:
 	int *arr;
 	int size;
+	Array():arr(NULL) , size(0){}
 	Array(int siz , int val =0){
+		cout << "Default constructor called\n";
 		arr = new int[siz];
 		size =siz;
 		for ( int i =0; i < siz; i++)
@@ -13,20 +17,22 @@ public:
 	}
 	int operator[]( int index)
 	{
-		if (index > size) return 0;
+		if (index >= size) return 0;
 		return arr[index];
 	}
-	Array( Array &b){
+	Array(const Array &b){
+		cout << "Copy constructor called \n";
 		int t = b.size;
 		size = t;
-		if ( arr!= NULL) delete arr;
+		if ( arr!= NULL){cout << "Inside copy dees, check if des is called\n "; delete[] arr;}
 		arr = new int[t];
 		for ( int i =0; i < t; i++)
 			arr[i] = b.arr[i];
 	
 	}
 	Array ( int *p , int siz){
-		//if ( arr!= NULL) delete arr;
+		cout <<  "Parameterized constructor called \n"; 
+		if ( arr!= NULL) delete[] arr;
 		arr = new int[siz];
 		size = siz;
 		for ( int i =0; i < siz; i++)
@@ -34,11 +40,14 @@ public:
 	}
 	
 	
-	Array operator+( Array  &a)
+	Array operator+( const Array  a)
 	{
+		cout << " Inside only  + operator\n";
+
 		int siz = max( size , a.size);
-		Array aa( siz );
+		Array aa(siz);// = new Array( siz );
 		int i;
+		aa.size = siz;
 		for ( i =0; i < min(size , a.size) ; i++)
 			aa.arr[i] =  arr[i] + a.arr[i];
 		for ( ;i < siz;i++)
@@ -53,29 +62,70 @@ public:
 		
 	
 	}
-	
-	
-	Array operator=( Array  &a)
+/*
+	friend Array operator+(const Array &b , const Array &a)
 	{
-		int siz = a.size;
-		Array aa( siz );
-		
-		for ( int i =0; i < siz ; i++)
+		cout << " Inside + operator\n";
+
+		int siz = max( b.size , a.size);
+		Array aa(siz);// = new Array( siz );
+		int i;
+		aa.size = siz;
+		for ( i =0; i < min(b.size , a.size) ; i++)
+			aa.arr[i] =  b.arr[i] + a.arr[i];
+		for ( ;i < siz;i++)
+		{
+			if ( a.size >= i)
 			aa.arr[i] = a.arr[i];
+			else
+			aa.arr[i] = b.arr[i];
+		
+		}
+		cout << "All assignments done\n";
+		aa.display();
+ 
 		return aa;
+		
+	
 	}
+	
+*/	
+	/*
+	friend Array operator=(Array &b ,  Array  &a)
+	{
+		cout << "Inside assignement\n";
+		int siz = a.size;
+		Array *aa = new Array( siz );
+		aa->size =siz;
+		for ( int i =0; i < siz ; i++)
+			aa->arr[i] = a.arr[i];
+		return *aa;
+	}
+*/
+	friend Array operator* (Array &b, int x){
+	Array a(b.size);
+	for ( int i =0; i < b.size;  i++)
+		a.arr[i] = b.arr[i]*x;
+	return a;
+}
+	friend Array operator*(int x ,Array &b){
+		return (b * x);
+} 
 	void display(){
 		cout << size << "\n";
 		for ( int i =0; i < size; i++)
 			cout << arr[i] << " ";
 			cout <<"\n";
 	}
-	/*
+	
 	~Array(){
-		cout << "Yo" << "\n";
-		delete arr;
+		cout << "Destructor bro" << "\n";
+		cout << size << "\n";
+		if ( arr == NULL) cout << "bruh danger\n"; 
+		if ( arr != NULL )delete arr;
+
 	}
-*/
+
 
 
 };
@@ -84,9 +134,17 @@ int main(){
 	//arr = new int[100];
 	for ( int i =0; i < 100; i++)
 		arr[i] = i;
+	cout << "Array obj created \n";
 	Array aa(arr , 100);
 	aa.display();
+	cout << "Another array object created\n";
+	Array b(100);
+	b = aa;
+	b.display();
 	//Array b(100);
-	Array c = aa + aa;
-	c.display();		
+	Array c=aa + b; // copy constructor not called
+	Array d(5*c);
+	d.display();
+	
+	c.display();			
 }
