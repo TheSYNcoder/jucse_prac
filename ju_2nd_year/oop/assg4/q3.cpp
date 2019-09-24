@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-
 using namespace std;
 #define max(x , y) ( (x) > (y) ? (x) : (y)) 
 class Array{
@@ -62,46 +61,6 @@ public:
 		
 	
 	}
-/*
-	friend Array operator+(const Array &b , const Array &a)
-	{
-		cout << " Inside + operator\n";
-
-		int siz = max( b.size , a.size);
-		Array aa(siz);// = new Array( siz );
-		int i;
-		aa.size = siz;
-		for ( i =0; i < min(b.size , a.size) ; i++)
-			aa.arr[i] =  b.arr[i] + a.arr[i];
-		for ( ;i < siz;i++)
-		{
-			if ( a.size >= i)
-			aa.arr[i] = a.arr[i];
-			else
-			aa.arr[i] = b.arr[i];
-		
-		}
-		cout << "All assignments done\n";
-		aa.display();
- 
-		return aa;
-		
-	
-	}
-	
-*/	
-	/*
-	friend Array operator=(Array &b ,  Array  &a)
-	{
-		cout << "Inside assignement\n";
-		int siz = a.size;
-		Array *aa = new Array( siz );
-		aa->size =siz;
-		for ( int i =0; i < siz ; i++)
-			aa->arr[i] = a.arr[i];
-		return *aa;
-	}
-*/
 	friend Array operator* (Array &b, int x){
 	Array a(b.size);
 	for ( int i =0; i < b.size;  i++)
@@ -117,13 +76,22 @@ public:
 			cout << arr[i] << " ";
 			cout <<"\n";
 	}
+	void operator =( const Array &b){
+        cout << "ASSIGNMENT OVERLOADING CALLED\n";
+        if ( arr != NULL) delete[] arr;
+    arr= NULL;
+    size = b.size;
+    arr = new int[size];
+    for ( int i =0 ; i < size; i++)
+		arr[i] = b.arr[i];
+    }
 	
 	~Array(){
-		cout << "Destructor bro" << "\n";
+		cout << "Destructor called" << "\n";
 		cout << size << "\n";
-		if ( arr == NULL) cout << "bruh danger\n"; 
-		if ( arr != NULL )delete arr;
-
+		if ( arr != NULL)
+			delete[] arr;
+		arr =NULL;
 	}
 
 
@@ -137,14 +105,12 @@ int main(){
 	cout << "Array obj created \n";
 	Array aa(arr , 100);
 	aa.display();
-	cout << "Another array object created\n";
-	Array b(100);
-	b = aa;
-	b.display();
-	//Array b(100);
-	Array c=aa + b; // copy constructor not called
+	// cout << "Another array object created\n";
+	// Array b(100);
+	// b = aa; // Byte wise copying
+	// b.display();   Byte wise copying does not allocate space hence destructor crashes.
+	Array c=aa + aa; // copy constructor not called
 	Array d(5*c);
 	d.display();
-	
 	c.display();			
 }
