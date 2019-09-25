@@ -10,7 +10,8 @@ class STRING{
     public:
     STRING():s(NULL) , size(0){
         cout <<"System default constructor called\n";
-        *ref_count= 0;
+        ref_count= new int;
+        *ref_count =0;
     }
     STRING( char *ss , int si){
         cout << "Default constructor called\n";
@@ -107,7 +108,7 @@ int main(){
     char *s ="wowGreat";
     STRING ss(s,strlen(s));
     ss.display(); 
-    STRING sss; // assignment overloading has to be non-static , cannot be  a friend
+   	STRING sss; // assignment overloading has to be non-static , cannot be  a friend
     sss = ss + ss;
     sss.display();
     cout << ( ss == ss) << "\n";
