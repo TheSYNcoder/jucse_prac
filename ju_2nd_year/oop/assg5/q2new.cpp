@@ -20,7 +20,7 @@ class Book{
         return id;
     }
 };
-const int Max = 1e5;
+const int Max = 1e2;
 class BookMap{
     Book b;
     int available;
@@ -85,10 +85,11 @@ class BookList{
         
     }
 
-    int issue(string id){
+    void issue(string id){
         for  (int i =0; i < cnt; i++){
             if ( books[i].get_book().get_id() == id){
                 books[i].dec();
+                return;
             }
         }
     }
@@ -118,7 +119,9 @@ class Member{
         return id;
     }
 
-    virtual int return_max_issued();
+    virtual int return_max_issued(){
+        return 0;
+    };
     virtual ~Member() = default;
 
 };
@@ -126,7 +129,7 @@ class Member{
 class Student : public Member{
     const int max_issued =2;
     public:
-    virtual void issue();
+    // virtual void issue();
     virtual int return_max_issued(){
         return max_issued;
     }
@@ -139,7 +142,7 @@ class Student : public Member{
 class Faculty : public Member{
     const int max_issued =10;
     public:
-    virtual void issue();
+    // virtual void issue();
     virtual int return_max_issued()
     {
         return max_issued;
@@ -152,35 +155,42 @@ class Faculty : public Member{
 
 
 class MemberList{
+public:
     Member *members[Max];
     int cnt;
-    public:
+    MemberList(){
+        for ( int i =0; i < Max; i++)
+            members[i] = new Member();
+        cnt  =0;
+    }
+    
+    
     
     int verify( string id){
         for ( int i =0; i < cnt; i++){
-            if ( members[i]-> get_id() == id)
+            if ( members[i]->get_id() == id)
             return 1;
         }
         return 0;
     }
     void add( string id , string type){
         if ( !verify(id) ) {
-            Member *b;
-            
-            if ( type == "Student"){
-                b = new Student();
+            members[cnt]-> get_info();
+           if ( type == "Student"){
+                
+                members[cnt++] = new Student();
             }
             else
-                b = new Faculty();
-            b->get_info();
-            members[cnt++] = b;
+            {
+                members[cnt++]= new Faculty();
+            }
         }
  
     }
 
     void display(){
         for ( int i =0 ; i < cnt; i++){
-            cout << (members[i]-> return_max_issued()) << "\n";
+            cout << (members[i]->return_max_issued()) << "\n";
         }
     }
 
@@ -191,10 +201,19 @@ class MemberList{
 class Transaction{
     string member_id;
     string book_id;
-    string date;
-
+    char status;
     public:
-    void get_info();
+    Transaction(){
+        status ='.';
+    }
+    public:
+    void get_info(){
+        cout << "Enter member id :";
+        cin >> member_id;
+        cout << "Enter book id ";
+        cin >> book_id;
+    }
+
 
 
 };
@@ -202,15 +221,103 @@ class Transaction{
 class Issue : public Transaction{
 
     public:
-
+    void get_info (){
+        Transaction::get_info();
+    }
+    int verify(string id);
 
 };
 
 class Return : public Transaction{
+    int sn;
+    public:
+    void get_info(){
+        Transaction::get_info();
+        cout << "Enter serial number";
+        cin >> sn;
+    }
+    
 
 };
 
 class TransactionList{
+    int cnt;
+    Transaction trans[Max];
+    public:
+    TransactionList(){
+        cnt =0;
+        for ( int i =0; i < Max ; i++)
+            trans[i]= Transaction();
+    }
+    int verifyMember(MemberList &m , string id){
+        return m.verify(id);
+    }
+
+    void issue( MemberList &m , string mem_id , BookList &b , string book_id){
+        if ( !m.verify(mem_id)) return;
+        if ( !b.available_for_issue( book_id)) return ;
+        b.issue(book_id);
+    }
+
+    void Return(){
+
+    }
+    
+    
+
+
+
+};
+
+
+class Library{
+
+    public:
+        TransactionList tl;
+        MemberList ml;
+        BookList bl;
+
+    void perform(){
+        while( true){
+            cout << "enter book id";
+            string id;
+            cin >> id;
+            bl.add_book(id);
+            cout << "Enter n to stop";
+            char c;
+            cin >> c;
+            if ( c == 'n')
+                break;
+        }
+
+        while(true){
+            cout << "enter member id";
+            string id;
+            cin >> id;
+            cout << "enter type"; 
+            string type;
+            cin >> type;
+            ml.add(id, type);
+            cout << "Enter n to stop";
+            char c;
+            cin >> c;
+            if (c == 'n')
+                break;
+        }
+
+        // Transactions
+        while( true){
+            cout << "Enter R to return and I to issue";
+            char c;
+            cin >> c;
+            if ( c == 'R'){
+                //Return
+            }
+            else{
+                //Issue
+            }
+        }
+    }
 
 
 };
@@ -220,9 +327,10 @@ class TransactionList{
 int main(){
     MemberList ml;
     ml.add( "123" , "Student");
-    ml.add("124", "Stud");
-    ml.add("1223", "St32ent");
-    ml.add("1213" ,"Faculty");
-    ml.display();
+    // ml.add("124", "Stud");
+    // ml.add("1223", "St32ent");
+    // ml.add("1213" ,"Faculty");
+    // ml.display();
+    
 
 }
