@@ -7,17 +7,17 @@ class Student{
     int score;
     
     void getdata(){
-        cout << "Enter name";
+        cout << "Enter name ";
         cin >> name;
-        cout << "Enter roll";
+        cout << "Enter roll ";
         cin >> roll;
-        cout << "Enter score";
+        cout << "Enter score ";
         cin >> score;
     }
 
-    bool operator==( int roll){
-        return this-> roll == roll;
-    }
+    //bool operator==( int roll){
+    //    return this-> roll == roll;
+    //}
 
 
 };

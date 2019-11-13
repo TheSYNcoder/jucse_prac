@@ -1,7 +1,5 @@
 #include <iostream>
 using namespace std;
-
-
 class Book{
 
 public:
@@ -35,9 +33,7 @@ public:
 Book books[1000];
 class BookList:public Book{
     public:
-        
         static int count;
-
         void get_data()
         {
             books[count++].get_data();
@@ -85,7 +81,6 @@ class Member{
     string name;
     string email;
     string address;
-    int code;// 0 for student , 1 for faculty
     int issued;
     Member():issued(0)
     {    }
@@ -100,8 +95,6 @@ class Member{
         cout << "Enter address";
         getchar();
         getline( cin , address);
-        cout << "Enter 0 for student and 1 for faculty";
-        cin >> code;
     }
 
     void show_data(){
@@ -112,8 +105,11 @@ class Member{
     }
 };
 
-// user submits memberid and book id and serial no to bw=e validated
+class Faculty: public Member{
+	
 
+};
+// user submits memberid and book id and serial no to b = e validated
 Member members[1000];
 class MemberList : public Member{
 public:
