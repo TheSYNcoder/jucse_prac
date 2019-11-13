@@ -1,6 +1,7 @@
 #include <iostream>
 #include "student.hpp"
 #include <vector>
+#include <string>
 using namespace std;
 
 class StudentOperation{
@@ -45,6 +46,28 @@ class StudentOperation{
             cout << "\n";
         }
     }
+    
+    vector<Student> find_substring_in_name( string s){
+    	vector<Student> st;
+    	for ( Student student : students){
+    		if (student.name.find_first_of(s) != string::npos){
+    			st.push_back(student);
+    		}
+    		
+    	}
+    	return st;
+    }
+    
+    vector<Student> find_not_substring_in_name( string s){
+    	vector<Student> st;
+    	for ( Student student : students){
+    		if (student.name.find_first_of(s) == string::npos){
+    			st.push_back(student);
+    		}
+    		
+    	}
+    	return st;
+    }
 
 
 };
@@ -56,6 +79,7 @@ int main(){
     cout << s.noOfStudents();
     s.removeByRoll(12);
     s.display();
+    vector<Student>  = s.find_substring_in_name('a');
     
 
 }
