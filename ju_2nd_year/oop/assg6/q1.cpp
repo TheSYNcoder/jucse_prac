@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 class Book{
     string id;
@@ -56,54 +57,108 @@ class BookList{
     // add a book
     // check a book available for issue given id
     // check a book is there acc to some serial no and id
-    BookMap books[Max];
+    // BookMap books[Max];
+
+    string filename;
     int cnt;
     public:
-    BookList():cnt(0){}
+    BookList():cnt(0){
+        filename="books.txt";
+        ofstream i(filename);
+        i.close();
+    }
     void add_book( string id){
         int flag =0;
-        for ( int i =0 ; i < cnt; i++){
-            if ( books[i].get_book().get_id() == id)
-                {
-                    books[i].add();
-                    flag =1;
-                    break;
-                }
+        
+
+        fstream f;
+        f.open(filename);
+        BookMap obj;
+        f.seekg(0, ios_base::beg);
+        f.read((char*)(&obj) , sizeof(obj));
+        
+        while ( !f.eof()){
+        if ( obj.get_book().get_id() == id){
+            long pos= f.tellp();
+            f.seekp( pos - sizeof(obj));
+            obj.add();
+            f.write((char*)(&obj) , sizeof(obj));
+            flag =1;
+            f.close();
+            break;
         }
+        f.read((char*)(&obj) , sizeof(obj));
+    }
+    f.close();
+    
+    f.open(filename);
+
+      
+
         if (!flag){
             BookMap b;
+            
             b.get_info(id);
-            books[cnt++] = b;
+            f.seekp( 0 , ios_base::end);
+            
+             f.write((char*)(&(b)) ,sizeof(b));
+            f.close();
         }
+        else{
+            f.close();
+        }
+        
     }
 
     int available_for_issue( string id){
-        for ( int i =0 ; i < cnt; i++){
-            if ( books[i].get_book().get_id() == id){
-                return (books[i].av() > 0);
+        fstream f;
+        f.open(filename);
+        BookMap obj;
+        f.read( (char*)(&obj) , sizeof(obj));
+        while ( !f.eof()){
+            if ( obj.get_book().get_id() == id){
+                return (obj.av() > 0);
             }
+            f.read((char*)(&obj) , sizeof(obj) );
         }
+        f.close();
         return 0;     
     }
 
     void issue(string id){
-        for  (int i =0; i < cnt; i++){
-            if ( books[i].get_book().get_id() == id){
-                books[i].dec();
+        fstream f;
+        f.open(filename);
+        BookMap obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
+        {
+            if (obj.get_book().get_id() == id)
+            {
+                obj.dec();
                 return;
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
+        f.close();
+        return ;
     }
     void ret(string id)
     {
-        for (int i = 0; i < cnt; i++)
+        fstream f;
+        f.open(filename);
+        BookMap obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
         {
-            if (books[i].get_book().get_id() == id)
+            if (obj.get_book().get_id() == id)
             {
-                books[i].inc();
+                obj.inc();
                 return;
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
+        f.close();
+        return;
     }
 };
 
@@ -175,37 +230,55 @@ class Faculty : public Member{
 
 
 class MemberList{
+    string filename = "members.txt";
 public:
-    Member *members[Max];
+    // Member *members[Max];
     int cnt;
     MemberList(){
-        for ( int i =0; i < Max; i++)
-            members[i] = new Member();
+        // for ( int i =0; i < Max; i++)
+        //     members[i] = new Member();
         cnt  =0;
+        ofstream i(filename);
+        i.close();
     }
     
     int verify( string id){
-        for ( int i =0; i < cnt; i++){
-            if ( members[i]->get_id() == id)
-            return 1;
+
+        fstream f;
+        f.open(filename);
+        Member *obj;
+        
+        f.seekp(0, ios_base::beg);
+        f.read( (char*)(((&obj))) , sizeof(obj));
+        
+        while ( !f.eof()){
+            if ( obj->get_id() == id){
+                f.close();
+                return 1;
+            }
+            f.read((char *)(&obj), sizeof(obj));
         }
+        f.close();
         return 0;
     }
     void add( string id , string type){
         if ( !verify(id) ) {
-            
-           if ( type == "Student"){
-                
-                members[cnt] = new Student();
-                cout << "New student registered\n";
+            Member *obj;
+            if ( type == "Student"){
+                obj = new Student();
+                obj->get_info(id);
             }
-            else
-            {
-                members[cnt]= new Faculty();
-                cout << "new faulty registered\n";
+            else{
+                obj = new Faculty();
+                obj -> get_info(id);
             }
-            members[cnt]->get_info(id);
-            cnt++;
+            ofstream o(filename);
+            o.close();
+            fstream f;
+            f.open( filename);
+            f.seekp( 0 , ios_base::end);
+            f.write((char*)(&obj) , sizeof(obj) );
+            f.close();
         }
         else{
             cout << "Member present with this id\n";
@@ -213,51 +286,76 @@ public:
  
     }
 
-    void display(){
-        for ( int i =0 ; i < cnt; i++){
-            cout << (members[i]->return_max_issued()) << "\n";
-        }
-    }
+    // void display(){
+    //     for ( int i =0 ; i < cnt; i++){
+    //         cout << (members[i]->return_max_issued()) << "\n";
+    //     }
+    // }
     int return_maxIssued(string id){
-        for (int i = 0; i < cnt; i++)
+        fstream  f;
+        f.open(filename);
+        Member *obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
         {
-            if (members[i]->get_id() == id)
-                return members[i]->return_max_issued();
+            if (obj->get_id() == id)
+            {
+                return obj->return_max_issued();
+            }
+            f.read((char *)(&obj), sizeof(obj));
         }
+        f.close();
         return 0;
     }
-
     int return_curr(string id)
     {
-        for (int i = 0; i < cnt; i++)
+        fstream f;
+        f.open(filename);
+        Member *obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
         {
-            if (members[i]->get_id() == id)
-                return members[i]->get_curr();
+            if (obj->get_id() == id)
+            {
+                return obj-> get_curr();
+            }
+            f.read((char *)(&obj), sizeof(obj));
         }
+        f.close();
         return 0;
     }
     void issue(string id){
-        for (int i = 0; i < cnt; i++)
+        fstream f;
+        f.open(filename);
+        Member *obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
         {
-            if (members[i]->get_id() == id)
+            if (obj->get_id() == id)
             {
-                members[i]->issue();
+                obj->issue();
                 return;
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
-        
+        f.close();
     }
 
     void ret(string id){
-        for (int i = 0; i < cnt; i++)
+        fstream f;
+        f.open(filename);
+        Member *obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
         {
-            if (members[i]->get_id() == id)
+            if (obj->get_id() == id)
             {
-                members[i]->ret();
+                obj->ret();
                 return;
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
-        
+        f.close();
     }
 };
 
@@ -350,10 +448,13 @@ class Return : public Transaction{
 
 class TransactionList{
     int cnt;
-    Transaction trans[Max];
+    // Transaction trans[Max];
+    string filename = "transaction.txt";
     public:
     TransactionList(){
         cnt =0;
+        ofstream o(filename);
+        o.close();
     }
     int verifyMember(MemberList &m , string id){
         return m.verify(id);
@@ -370,11 +471,22 @@ class TransactionList{
             cout  <<"Issue quota filled\n";
             return;
         }
-        trans[cnt] = Issue();
-        trans[cnt].set_info(mem_id , book_id);
-        trans[cnt].change_status('I');
-        trans[cnt].set_serial(get_sn(book_id));
+        // trans[cnt] = Issue();
+        // trans[cnt].set_info(mem_id , book_id);
+        // trans[cnt].change_status('I');
+        // trans[cnt].set_serial(get_sn(book_id));
         cnt++;
+
+        Transaction obj;
+        
+        obj.set_info(mem_id , book_id);
+        obj.change_status('I');
+        obj.set_serial(get_sn(book_id));
+        fstream f;
+        f.open(filename);
+        f.seekp(0, ios_base::end);
+        f.write( (char*)(&obj) , sizeof(obj));
+        f.close();
         cout << "Successfully issued\n";
     }
 
@@ -388,38 +500,67 @@ class TransactionList{
         if ( pos == -1) {cout << "Wrong book id or serial no\n";return;}
         b.ret(book_id);
         m.ret(mem_id);
-        trans[cnt] = Return();
-        trans[cnt].set_info(mem_id , book_id);
-        trans[cnt].change_status('R');
-        trans[cnt].set_serial(sn);
+        Transaction obj;
+        obj = Return();
+        obj.set_info(mem_id , book_id);
+        obj.change_status('R');
+        obj.set_serial(sn);
+        fstream f;
+        f.open(filename);
+        f.seekp(0, ios_base::end);
+        f.write((char *)(&obj), sizeof(obj));
+        f.close();
+        cout << "Book returned successfully\n";
         cnt++;
     }
 
     int verifybook(string mem_id , string book_id , int sn){
-        int i ;
-        for (   i= cnt -1; i >= 0 ; i--){
-            if ( trans[i].get_memId() == mem_id){
-                if ( trans[i].get_bookId() == book_id && trans[i].get_serial_no() == sn){
-                    break;
+        // int i ;
+        // for (   i= cnt -1; i >= 0 ; i--){
+        //     if ( trans[i].get_memId() == mem_id){
+        //         if ( trans[i].get_bookId() == book_id && trans[i].get_serial_no() == sn){
+        //             break;
+        //         }
+        //     }
+        // }
+        // return i;
+
+        fstream f;
+        f.open(filename);
+        Transaction obj;
+        f.read((char *)(&obj), sizeof(obj));
+        while (!f.eof())
+        {
+            if (obj.get_memId() == mem_id)
+            {
+                if (obj.get_bookId() == book_id && obj.get_serial_no() == sn && obj.get_status() == 'I')
+                {
+                    return 1;
                 }
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
-        return i;
+        return -1;
     }
 
     int get_sn(string book_id)
     {
         //serial starts from 1
         if ( cnt == 0) return 1;
-        for ( int i = cnt-1; i >= 0; i--){
-            if ( trans[i].get_bookId() == book_id){
-                if (trans[i].get_status() == 'R'){
-                    return (trans[i].get_serial_no() + 1);
+        int sn =-1;
+        fstream f;
+        f.open(filename);
+        Transaction obj;
+        f.read( (char*)(&obj) , sizeof(obj));
+        while( !f.eof()){
+            if ( obj.get_bookId() == book_id){
+                if ( obj.get_status() == 'R'){
+                    sn = obj.get_serial_no()+1;
                 }
-
             }
+            f.read((char *)(&obj), sizeof(obj));
         }
-        return 1;
+        return ( sn == -1 ? 1 : sn);
     }
 
 
