@@ -10,7 +10,7 @@ class StudentOperation{
     private:
     
     Student stobj;
-    map<int, Student, greater<int> > mm;
+    map<int, Student > mm;
     public:
     void add(){
         stobj.getdata();
