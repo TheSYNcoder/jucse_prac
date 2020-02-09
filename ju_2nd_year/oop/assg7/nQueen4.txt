@@ -1,0 +1,14 @@
+. . * . 
+* . . . 
+. . . * 
+. * . . 
+
+
+. * . . 
+. . . * 
+* . . . 
+. . * . 
+
+
+Time taken = 0.000623
+ seconds!!Number of solutions : 2
