@@ -1,0 +1,234 @@
+
+const int Max = 1e4;
+class Book{
+    string id;
+    string title;
+    string author;
+    string price;
+    public:
+
+    // gets the input data
+    void get_info(string Id);
+
+    // returns the id
+    string get_id();
+
+};
+
+
+class BookMap{
+    Book b;
+    int available;
+    int total;
+
+    public:
+    BookMap(){  
+        available =0;
+        total =0;
+    }
+    //adds a book of a certain id already present, available and total incremented
+    void add();
+
+    //registers a new book
+    void add_book(string id);
+
+    Book get_book();
+
+    int get_available();
+
+    //while issue
+    void decrement_av();
+
+    //while return
+    void increment_av();
+
+};
+
+class BookList{
+    BookMap books[Max];
+    int cnt;
+    public:
+    BookList():cnt(0){}
+
+    void add_book( string id);
+
+    int available_for_issue( string id);
+
+    void issue(string id);
+
+    void ret(string id);
+};
+
+class Member{
+    string id;
+    string name;
+    string email;
+    // to store the current number of books the member has currently issued
+    int current;
+
+    public:
+    Member():current(0){}
+
+    // registers a member with id =Id
+    void get_info(string Id);
+
+    string get_id();
+
+    int get_curr();
+
+    void issue();
+
+    void Return();
+
+};
+
+class Student : public Member{
+    const int max_issued;
+    public:
+    Student():Member():max_issued(2){}
+
+    int return_max_issued();
+
+    void get_info(string id){
+        Member::get_info(id);
+    }
+};
+
+class Faculty : public Member{
+    const int max_issued;
+    public:
+    Faculty():Member():max_issued(10){}
+
+    int return_max_issued();
+
+    void get_info(string id){
+        Member::get_info(id);
+    }
+};
+
+class MemberList{
+public:
+    Member members[Max];
+    int cnt;
+    public:
+    MemberList():cnt(0){}
+    //verifies if a member of id= id exists in the list
+    int verify( string id);
+
+    // Registers a new member of id=id , type =Student/Faculty
+    void add( string id , string type);
+
+    // returns 2 or 10 according to type of member of id =id
+    int return_maxIssued(string id);
+
+    //returns currently issued number of books by member of id = id
+    int return_curr(string id);
+
+    void issue(string id);
+
+    void Return(string id);
+
+};
+
+class Transaction{
+    string member_id;
+    string book_id;
+    char status;// I for issue , R for return
+    int sn;
+    public:
+    Transaction(){
+        status ='.';
+        sn =0;
+    }
+    public:
+    void set_info( string mid, string bid){
+        member_id = mid;
+        book_id = bid;
+    }
+    string get_bookId(){return book_id;}
+
+    string get_memId(){return member_id;}
+
+    char get_status(){return status;}
+
+    int get_serial_no(){return sn;}
+
+    void change_status(char c){status = c;}
+
+    void set_serial( int n){sn =n;}
+};
+
+class Issue : public Transaction{
+    public:
+    void get_info (){
+        Transaction::get_info();
+    }
+    void set_info(string mid, string bid){
+            Transaction::set_info(mid, bid);
+    }
+    void change_status(char c){
+        Transaction::change_status(c);
+    }
+    void set_serial(int n){
+        Transaction::set_serial(n);
+    }
+};
+
+class Return : public Transaction{
+    public:
+    void get_info(){
+        Transaction::get_info();
+    }
+    void set_info(string mid, string bid)
+    {
+        Transaction::set_info(mid, bid);
+    }
+    void change_status(char c)
+    {
+        Transaction::change_status(c);
+    }
+    void set_serial(int n)
+    {
+        Transaction::set_serial(n);
+    }
+};
+
+class TransactionList{
+    int cnt;
+    Transaction trans[Max];
+    //private method used by issue() ,gets the next available serial number
+    int get_sn(string book_id);
+
+    //private method used by ret() , verifies the corresponding id and serial number
+    int verifybook(string mem_id , string book_id , int sn);
+
+    public:
+    TransactionList(){
+        cnt =0;
+    }
+
+    //verifies member id , checks book for availability and then adds a issue transaction
+    void issue( MemberList &m , string mem_id , BookList &b , string book_id);
+
+    //verifies member , book , sn , and adds a return transaction
+    void ret(MemberList &m, string mem_id, BookList &b, string book_id , int sn);
+};
+
+class Library{
+
+    public:
+        TransactionList tl;
+        MemberList ml;
+        BookList bl;
+
+    void perform();
+
+};
+
+
+
+
+
+
+
+
