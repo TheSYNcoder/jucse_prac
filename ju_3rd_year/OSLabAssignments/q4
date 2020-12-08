@@ -1,0 +1,41 @@
+#!/bin/bash
+
+
+word1="printf"
+word2="scanf"
+word3="int"
+
+# echo "Parsing $1 ..."
+printf "\n%30s Details \n"
+printf "%30s %10s %10s %10s\n" filename $word1 $word2 $word3 
+
+
+
+# for ((c=1; c <= 6; c++ )); do
+for arg in "$@"; do
+    freq1=0
+    freq2=0
+    freq3=0
+    
+
+    content=($(cat $arg))
+    OIFS="$IFS"
+    IFS=$'\n'
+    for line in ${content[@]}; do
+        words=( $(echo $line |  tr ' ' $'\n') )
+        for word in ${words[@]}; do
+            if [[ $word =~ $word1 ]]; then
+                freq1=$(( freq1 + 1 ))
+            elif [[ $word =~ $word2 ]]; then
+                freq2=$(( freq2 + 1 ))
+            elif [[ $word =~ $word3 ]]; then
+                freq3=$(( freq3 + 1 ))
+            fi
+        done
+    done
+    IFS="$OIFS"
+    printf "%30s %10s %10s %10s\n" $arg $freq1 $freq2 $freq3 
+done
+
+
+# ./q4 ../../prog/spoj-csumq.cpp ../../prog/spoj-gss3.cpp ../../prog/spoj-kgss.cpp ../../prog/seg.cpp ../../prog/seg.cpp ../../prog/templates.cpp

@@ -1,0 +1,17 @@
+import java.util.*;
+
+
+class Test{
+    public static void main(String args[]){
+     
+        System.out.println("Enter the height in cm : ");
+        Scanner in = new Scanner(System.in);
+        
+        int radius  = in.nextInt();
+        final double pi = 3.141592653598979;
+        double feet = 0;
+        System.out.println("Area :" + pi * radius * radius) ;
+        
+    }
+
+}
