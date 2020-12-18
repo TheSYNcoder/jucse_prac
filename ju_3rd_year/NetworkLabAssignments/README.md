@@ -12,4 +12,6 @@ The implementation involves the use of MemoryMappedByteBuffer in Java for IPC an
 and communication between sender and receiver threads are achieved through a modified ArrayBlockingQueue in Java ( here ArrayBlockingList ). For timing different packets
 DelayQueue in Java was of a great use.
 
-* Assignment3 : CSMA
+* Assignment3 : It contains the simulation of CSMA protocol. The simulation consists of generating multiple frames with a random generator function. The protocol has simulations for it's three schemes such as persistent CSMA, non-persistent CSMA and p-persistent CSMA. The channel is sensed and collision is calculated by furthur calculating propagation time and transmission time and comparing them. Upon collision, the frames are delayed by a exponential back-off time calculated randomly.
+
+* Assignment 4: CDMA
