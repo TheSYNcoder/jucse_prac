@@ -1,0 +1,63 @@
+
+3
+[INFO] bits transferred : 1497 Time taken : 1037189.524
+ Throughput : 0.0014433234865569276
+
+
+ 4
+ [RECEIVER] SENDER : 1 DATA : 0
+ [INFO] bits transferred : 1996 Time taken : 864863.884
+  Throughput : 0.002307877617421703
+
+6
+[INFO] bits transferred : 2988 Time taken : 1238096.788
+ Throughput : 0.002413381594202149
+
+7
+[INFO] bits transferred : 3479 Time taken : 1288017.188
+ Throughput : 0.002701050911752274
+
+8
+[INFO] bits transferred : 3976 Time taken : 1303351.083
+ Throughput : 0.0030505978411037235
+
+10
+[INFO] bits transferred : 4960 Time taken : 1760272.057
+ Throughput : 0.002817746257049174
+
+12
+[INFO] bits transferred : 5940 Time taken : 2213952.732
+ Throughput : 0.002682984109888395
+
+14
+[RECEIVER] SENDER : 8 DATA : 1
+[INFO] bits transferred : 6916 Time taken : 2873971.369
+ Throughput : 0.0024064261998568296
+
+16
+[INFO] bits transferred : 7888 Time taken : 3309516.02
+ Throughput : 0.002383430070237279
+
+20
+[INFO] bits transferred : 9820 Time taken : 4424950.032
+ Throughput : 0.002219234099590845
+
+24
+[INFO] bits transferred : 11736 Time taken : 6662503.504
+ Throughput : 0.0017615000116628832
+
+28
+[INFO] bits transferred : 13636 Time taken : 9650305.75
+ Throughput : 0.0014130122250271707
+
+32
+[INFO] bits transferred : 15520 Time taken : 1.2066593445E7
+ Throughput : 0.0012861956500598748
+
+48
+[INFO] bits transferred : 22896 Time taken : 3.1173355074E7
+ Throughput : 7.344733970934142E-4
+
+64
+[INFO] bits transferred : 30016 Time taken : 7.0894198935E7
+Throughput : 4.2339148267293977E-4
