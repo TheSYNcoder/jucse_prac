@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+/Users/shuvayan/Desktop/local/test/Assigments/Internet_Technologies/assignment3/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1607448126.index
+854733092.index
+549227751.index
+395908016.index
+692723428.index
+260355234.index
+972984791.index
