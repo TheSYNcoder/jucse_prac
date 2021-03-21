@@ -1,0 +1,41 @@
+import java.util.*;
+
+
+class Bank{
+    long acc;
+    int balance ;
+    static double rate = 10.4;
+    Bank( long acc , int balance ){
+        this.acc = acc;
+        this.balance = balance;
+    }
+    static void showrate(){
+        System.out.println(rate);
+    }
+    static void changeRate(double rate){
+        rate = rate;
+    }
+    
+    void showBalance( ){
+        System.out.println(this.balance);
+    }
+    double interest(){
+        double interest = rate * balance / 100;
+        return interest;
+    }
+    public static void main(String args[]){
+        Bank b = new Bank(363826 , 500000);
+        showrate();
+        System.out.println(b.interest());
+        changeRate(5.6);
+        
+        System.out.println(b.interest());
+           
+    }
+    
+    
+    
+   
+   
+
+}

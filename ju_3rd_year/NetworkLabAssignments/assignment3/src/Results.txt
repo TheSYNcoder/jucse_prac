@@ -1,0 +1,424 @@
+*-------------------------*
+P-Persistent
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.1
+EFFICIENCY : 0.09927494294543508
+Throughput : 0.0015478928688056005 Mbps
+Collisions  : 164975
+Time Taken : 205 seconds
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.2
+EFFICIENCY : 0.2005207910832779
+Throughput : 0.003378343592167813 Mbps
+Collisions  : 98555
+Time Taken : 140 seconds
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.3
+EFFICIENCY : 0.3027901182851411
+Throughput : 0.0058095943431274765 Mbps
+Collisions  : 63246
+Time Taken : 106 seconds
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.4
+
+EFFICIENCY : 0.3987230738258894
+Throughput : 0.008792263747302015 Mbps
+Collisions  : 41814
+Time Taken : 83 seconds
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.5
+
+EFFICIENCY : 0.5032929067549573
+Throughput : 0.013413037266169728 Mbps
+Collisions  : 27604
+Time Taken : 68 seconds
+
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.6
+EFFICIENCY : 0.5990911818922279
+Throughput : 0.019867828637731653 Mbps
+Collisions  : 18704
+Time Taken : 59 seconds
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.7
+EFFICIENCY : 0.701981745751601
+Throughput : 0.019339022910312257 Mbps
+Collisions  : 11820
+Time Taken : 51 seconds
+
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.8
+EFFICIENCY : 0.8012767533985009
+Throughput : 0.03276806848906756 Mbps
+Collisions  : 6973
+Time Taken : 46 seconds
+
+
+num_nodes = 4, arrival_time = 7, distance_between_nodes=10, probability = 0.9
+EFFICIENCY : 0.8823268908360484
+Throughput : 0.04647522052169462 Mbps
+Collisions  : 3720
+Time Taken : 43 seconds
+
+Persistent
+EFFICIENCY : 0.9512112941810708
+Throughput : 0.047136146189445324 Mbps
+Collisions  : 1448
+Time Taken : 41 seconds
+
+
+
+*-------------------------*
+
+
+*--------------------------*
+
+Num nodes = 12
+
+Persistent
+EFFICIENCY : 0.45677656683229473
+Throughput : 0.13894189033649493 Mbps
+Collisions  : 98940
+Time Taken : 452 seconds
+
+EFFICIENCY : 0.45512444894718107
+Throughput : 0.3286446877173723 Mbps
+Collisions  : 99497
+Time Taken : 422 seconds
+
+P-Persistent
+
+
+
+
+p=0.9
+
+
+mod
+EFFICIENCY : 0.8991096342684304
+Throughput : 0.2463554952201794 Mbps
+Collisions  : 9473
+Time Taken : 571 seconds
+
+EFFICIENCY : 0.9001479211229235
+Throughput : 0.2639361459371803 Mbps
+Collisions  : 9383
+Time Taken : 534 seconds
+
+EFFICIENCY : 0.8634536093048063
+Throughput : 0.3918309179417406 Mbps
+Collisions  : 13313
+Time Taken : 358 seconds
+
+p=0.8
+
+
+EFFICIENCY : 0.8021279443254818
+Throughput : 0.3686655831272681 Mbps
+Collisions  : 20699
+Time Taken : 380 seconds
+
+p=0.7
+
+
+EFFICIENCY : 0.699999170007387
+Throughput : 0.3097723334132179 Mbps
+Collisions  : 36145
+Time Taken : 454 seconds
+
+p=0.6
+
+
+EFFICIENCY : 0.5986415029448433
+Throughput : 0.2702003643657287 Mbps
+Collisions  : 56016
+Time Taken : 516 seconds
+
+p=0.5
+
+EFFICIENCY : 0.5003084811347314
+Throughput : 0.227205490665803 Mbps
+Collisions  : 83422
+Time Taken : 614 seconds
+
+EFFICIENCY : 0.5009719819514544
+Throughput : 0.13670031058460305 Mbps
+Collisions  : 83943
+Time Taken : 1031 seconds
+
+p=0.4
+
+
+EFFICIENCY : 0.4003377481846035
+Throughput : 0.18792167295331622 Mbps
+Collisions  : 124283
+Time Taken : 738 seconds
+
+p=0.3
+
+
+EFFICIENCY : 0.29895974006380654
+Throughput : 0.14556154080993214 Mbps
+Collisions  : 190514
+Time Taken : 933 seconds
+
+p=0.2
+
+EFFICIENCY : 0.19957339590193438
+Throughput : 0.09331358256356413 Mbps
+Collisions  : 300204
+Time Taken : 1342 seconds
+
+
+p=0.1
+
+
+EFFICIENCY : 0.10025960435491336
+Throughput : 0.051231664695233554 Mbps
+Collisions  : 491799
+Time Taken : 1791 seconds
+
+NON-PERSISTENT
+EFFICIENCY : 1.0
+Throughput : 0.006535267436512407 Mbps
+Collisions  : 0
+Time Taken : 365 seconds
+
+
+
+20 NODES
+
+PERSISTENT
+EFFICIENCY : 0.5759131995269638
+Throughput : 0.20204660756460124 Mbps
+Collisions  : 102562
+Time Taken : 1151 seconds
+
+
+P-PERSISTENT
+
+0.9
+EFFICIENCY : 0.791345664347531
+Throughput : 0.20420960369116056 Mbps
+Collisions  : 36888
+Time Taken : 1144 seconds
+
+0.8
+EFFICIENCY : 0.7991252964494315
+Throughput : 0.21063464172574503 Mbps
+Collisions  : 35320
+Time Taken : 1113 seconds
+
+0.7
+EFFICIENCY : 0.698337980591451
+Throughput : 0.1842999416903171 Mbps
+Collisions  : 60368
+Time Taken : 1265 seconds
+
+0.6
+EFFICIENCY : 0.6013811690855783
+Throughput : 0.17126307862227788 Mbps
+Collisions  : 92586
+Time Taken : 1361 seconds
+
+
+
+NON-PERSISTENT
+EFFICIENCY : 1.0
+Throughput : 0.14362204016679683 Mbps
+Collisions  : 0
+Time Taken : 1628 seconds
+
+
+
+
+
+Comparision of p persistent on number of nodes
+
+p = 0.75
+n= 4
+EFFICIENCY : 0.748348252344416
+Throughput : 0.8593005206996442 Mbps
+Collisions  : 9446
+Time Taken : 54 seconds
+
+n = 8
+EFFICIENCY : 0.7452612908349658
+Throughput : 0.4618537778476287 Mbps
+Collisions  : 19245
+Time Taken : 203 seconds
+
+
+n=12
+EFFICIENCY : 0.7402222085165246
+Throughput : 0.30074962131031985 Mbps
+Collisions  : 29484
+Time Taken : 466 seconds
+
+n=16
+EFFICIENCY : 0.7337644414652419
+Throughput : 0.23830215682219172 Mbps
+Collisions  : 40512
+Time Taken : 783 seconds
+
+
+
+Comparison of persistent
+
+n = 4
+EFFICIENCY : 0.9496346644010195
+Throughput : 0.9079672217455736 Mbps
+Collisions  : 1482
+Time Taken : 51 seconds
+
+n=8
+EFFICIENCY : 0.6824577632796144
+Throughput : 0.42785147210814667 Mbps
+Collisions  : 26088
+Time Taken : 218 seconds
+
+
+n = 12
+EFFICIENCY : 0.5448046007057901
+Throughput : 0.2720972357996981 Mbps
+Collisions  : 69654
+Time Taken : 511 seconds
+
+n=16
+EFFICIENCY : 0.5525021953433914
+Throughput : 0.20629642741802126 Mbps
+Collisions  : 90199
+Time Taken : 901 seconds
+
+
+Non-Persistent
+
+n=4
+EFFICIENCY : 0.9368658779114841
+Throughput : 0.9808825111727701 Mbps
+Collisions  : 1873
+Time Taken : 47 seconds
+
+n=8
+EFFICIENCY : 0.9331550355202675
+Throughput : 0.5244807190001404 Mbps
+Collisions  : 3999
+Time Taken : 178 seconds
+
+
+n=12
+EFFICIENCY : 0.9333891306773797
+Throughput : 0.4332817676638965 Mbps
+Collisions  : 5969
+Time Taken : 321 seconds
+
+n=16
+EFFICIENCY : 0.93102122038093
+Throughput : 0.3257820959973426 Mbps
+Collisions  : 8250
+Time Taken : 571 seconds
+
+
+
+
+Persistent Comparison
+
+EFFICIENCY : 0.9355223233636758
+Throughput : 0.29555204338947955 Mbps
+Collisions  : 7735
+Time Taken : 633 seconds
+
+
+
+Persistent
+
+25 nodes
+p=0.95
+EFFICIENCY : 0.9113904383562479
+Throughput : 0.17588338969340475 Mbps
+Collisions  : 29086
+Time Taken : 2843 seconds
+
+
+12 nodes
+p=0.95
+EFFICIENCY : 0.9436475640189752
+Throughput : 0.2836868655909858 Mbps
+Collisions  : 599
+Time Taken : 495 seconds
+
+p=0.85
+EFFICIENCY : 0.8439483738981317
+Successfully sent frames : 84156
+Total transmitted frames : 99717
+Not sent due to p value : 14985
+Throughput : 0.22600917242388335 Mbps
+Collisions  : 576
+Time Taken : 621 seconds
+
+
+p=0.75
+EFFICIENCY : 0.7453157345317504
+Successfully sent frames : 84249
+Total transmitted frames : 113038
+Not sent due to p value : 28218
+Throughput : 0.23208196203312845 Mbps
+Collisions  : 571
+Time Taken : 607 seconds
+
+p=0.65
+EFFICIENCY : 0.6480195493140727
+Successfully sent frames : 83798
+Total transmitted frames : 129314
+Not sent due to p value : 45019
+Throughput : 0.2637499590316012 Mbps
+Collisions  : 497
+Time Taken : 530 seconds
+
+p=0.55
+EFFICIENCY : 0.5481228001564333
+Successfully sent frames : 84093
+Total transmitted frames : 153420
+Not sent due to p value : 68826
+Throughput : 0.18193559665042905 Mbps
+Collisions  : 501
+Time Taken : 770 seconds
+
+p=0.45
+EFFICIENCY : 0.4476901086944927
+Successfully sent frames : 83941
+Total transmitted frames : 187498
+Not sent due to p value : 103031
+Throughput : 0.20239729430535242 Mbps
+Collisions  : 526
+Time Taken : 691 seconds
+
+p=0.35
+EFFICIENCY : 0.34827796174731207
+Successfully sent frames : 83508
+Total transmitted frames : 239774
+Not sent due to p value : 155770
+Throughput : 0.16539852918852763 Mbps
+Collisions  : 496
+Time Taken : 843 seconds
+
+p=0.25
+EFFICIENCY : 0.24961729244790432
+Successfully sent frames : 84139
+Total transmitted frames : 337072
+Not sent due to p value : 252455
+Throughput : 0.12061923329520208 Mbps
+Collisions  : 478
+Time Taken : 1161 seconds
+
+p=0.15
+EFFICIENCY : 0.1490838590073341
+Successfully sent frames : 84278
+Total transmitted frames : 565306
+Not sent due to p value : 480471
+Throughput : 0.07406907381142823 Mbps
+Collisions  : 557
+Time Taken : 1901 seconds
+
+
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Disk blocks occupied by file $1: $(du $1)"; 
+

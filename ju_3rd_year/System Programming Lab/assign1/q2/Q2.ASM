@@ -1,0 +1,40 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+
+MSG1 DB "ENTER A UPPER CASE LETTER :$"
+MSG2 DB 0DH,0AH, "IN LOWER CASE : "
+CHAR DB ?, "$"
+
+.CODE
+
+
+MAIN PROC
+        MOV AX,@DATA
+        MOV DS,AX
+        LEA DX,MSG1
+        MOV AH,9
+        INT 21H
+
+        ; INPUT A CHARACTER
+
+        MOV AH,1
+        INT 21H
+        ADD AL, 20H ; CONVERT TO UPPER CASE
+        MOV CHAR, AL ;STORE THE CHARACTER
+
+        LEA DX, MSG2
+        MOV AH,9
+        INT 21H
+
+        ;EXIT
+        MOV AH,4CH
+        INT 21H
+
+
+MAIN ENDP
+END MAIN
+
+
+; MASM Q2.ASM && LINK Q2.OBJ && Q2.EXE

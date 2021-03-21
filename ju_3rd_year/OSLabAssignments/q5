@@ -1,0 +1,23 @@
+#!/bin/bash
+
+read -p "Enter filename : " filename
+read -p "Enter word to be searched : " word
+
+result=$(cat $filename | grep -n "$word"  )
+total=0
+OIFS="$IFS"
+IFS=$'\n'
+for line in $result; do
+    echo $line    
+    total=$((total+1))
+done
+IFS=$OIFS
+
+if [[ $total -gt 0 ]]; then
+    echo "Total matches found : $total"
+else
+    echo "Word $word not found"
+fi
+
+
+

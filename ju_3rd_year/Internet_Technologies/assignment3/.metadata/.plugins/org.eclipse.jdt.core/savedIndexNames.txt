@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+/Users/shuvayan/Desktop/local/test/Assigments/Internet_Technologies/assignment3/.metadata/.plugins/org.eclipse.jdt.core
+2948857178.index
+4061071855.index
+1240618980.index
+3903417306.index
+1607448126.index
+651717281.index

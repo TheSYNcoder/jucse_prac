@@ -1,0 +1,18 @@
+import java.util.*;
+
+
+class Test{
+    public static void main(String args[]){
+     
+        
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the string 1 and string 2 : ");
+        String a = in.nextLine();
+        String b = in.nextLine();
+        boolean res1 = a == b;
+        boolean res2 = a.equals(b);
+        System.out.println("a == b :" + res1 );
+        System.out.println("a.equals(b) :" + res2 );       
+    }
+
+}

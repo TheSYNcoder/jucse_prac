@@ -1,0 +1,15 @@
+#!/bin/bash
+
+read -p "Enter filename : " filename
+read -p "Enter word to be searched : " word
+read -p "Enter word to be replaced with : " word2
+
+
+result=$(cat $filename | sed "s/$word/$word2/g" )
+OIFS="$IFS"
+IFS=$'\n'
+for line in $result; do
+    echo $line    
+    total=$((total+1))
+done
+IFS=$OIFS
