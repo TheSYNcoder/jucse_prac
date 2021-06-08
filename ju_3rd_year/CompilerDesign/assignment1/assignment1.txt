@@ -1,0 +1,8 @@
+Assignment 1
+
+Lex is a tool that generates Lexical Analyzer from the regular expressions for a given language. There are several tutorials available on  the Internet for learning lex.
+Go through the tutorials and implement the followings.
+Write a lex file to count the number of lines, words, and characters in the input.
+Write a lex file to count the number of numbers appearing in the input. Count the number of integers (without a decimal) separately from the number of floating point numbers (with a decimal, and at least one digit on either side of the decimal).
+Write a lex file to count the number of words in an input text that start with a vowel.
+You may find solutions to the above problems on the Internet. Just copying from those sources without understanding their working will not be helpful for your learning. 
